@@ -6,7 +6,7 @@ import { assert } from 'meteor/practicalmeteor:chai'
 import { resetDatabase } from 'meteor/xolvio:cleaner'
 import { Factory } from 'meteor/dburles:factory'
 import { Products } from './products.js'
-import { insertProduct, updateProduct, removeProduct } from './methods.js'
+import { insertProduct, updateProductName, updateProductPrice, updateProductDescription, removeProduct } from './methods.js'
 
 describe('Products methods', function () {
   beforeEach(function () {
@@ -16,24 +16,55 @@ describe('Products methods', function () {
   })
 
   it('inserts a product into the Products collection', function () {
-    insertProduct.call({ title: 'You can\'t arrest me, I\'m the Cake Boss!' })
-    const getProduct = Products.findOne({ title: 'You can\'t arrest me, I\'m the Cake Boss!' })
-    assert.equal(getProduct.title, 'You can\'t arrest me, I\'m the Cake Boss!')
+    insertProduct.call({ name: 'Test Product' })
+    const getProduct = Products.findOne({ name: 'Test Product' })
+    assert.equal(getProduct.name, 'Test Product')
   })
 
-  it('updates a product in the Products collection', function () {
+  it('updates a product name in the Products collection', function () {
     const { _id } = Factory.create('product')
 
-    updateProduct.call({
+    updateProductName.call({
       _id,
       update: {
-        title: 'You can\'t arrest me, I\'m the Cake Boss!',
+        name: 'Test Product 2',
       },
     })
 
     const getProduct = Products.findOne(_id)
-    assert.equal(getProduct.title, 'You can\'t arrest me, I\'m the Cake Boss!')
+    assert.equal(getProduct.name, 'Test Product 2')
   })
+
+
+  it('updates a product price in the Products collection', function () {
+    const { _id } = Factory.create('product')
+
+    updateProductPrice.call({
+      _id,
+      update: {
+        price: 99,
+      },
+    })
+
+    const getProduct = Products.findOne(_id)
+    assert.equal(getProduct.price, 99)
+  })
+
+
+  it('updates a product description in the Products collection', function () {
+    const { _id } = Factory.create('product')
+
+    updateProductName.call({
+      _id,
+      update: {
+        description: 'A product test description.',
+      },
+    })
+
+    const getProduct = Products.findOne(_id)
+    assert.equal(getProduct.description, 'A product test description')
+  })
+
 
   it('removes a product from the Products collection', function () {
     const { _id } = Factory.create('product')

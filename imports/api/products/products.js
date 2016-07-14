@@ -18,9 +18,17 @@ Products.deny({
 })
 
 Products.schema = new SimpleSchema({
-  title: {
+  name: {
     type: String,
-    label: 'The title of the document.',
+    label: 'The name of the product.',
+  },
+  price: {
+    type: Number,
+    label: 'The price of the product.',
+  },
+  description: {
+    type: String,
+    label: 'The description of the product.',
   },
 })
 

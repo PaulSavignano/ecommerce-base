@@ -5,11 +5,13 @@ import { insertProduct } from '../../../api/products/methods.js'
 
 const handleInsertProduct = (event) => {
   const target = event.target
-  const title = target.value.trim()
+  const name = target.value.trim()
+  const price = 0
+  const description = 'example description'
 
-  if (title !== '' && event.keyCode === 13) {
+  if (name !== '' && event.keyCode === 13) {
     insertProduct.call({
-      title,
+      name, price, description,
     }, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger')

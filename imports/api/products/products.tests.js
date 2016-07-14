@@ -4,7 +4,7 @@
 import { assert } from 'meteor/practicalmeteor:chai'
 import { Products } from './products.js'
 
-describe('Documents collection', function () {
+describe('Products collection', function () {
   it('registers the collection with Mongo properly', function () {
     assert.equal(typeof Products, 'object')
   })

@@ -6,18 +6,42 @@ import { rateLimit } from '../../modules/rate-limit.js'
 export const insertProduct = new ValidatedMethod({
   name: 'products.insert',
   validate: new SimpleSchema({
-    title: { type: String },
+    name: { type: String },
+    price: { type: Number },
+    description: { type: String },
   }).validator(),
   run(product) {
     Products.insert(product)
   },
 })
 
-export const updateProduct = new ValidatedMethod({
-  name: 'products.update',
+export const updateProductName = new ValidatedMethod({
+  name: 'products.name.update',
   validate: new SimpleSchema({
     _id: { type: String },
-    'update.title': { type: String, optional: true },
+    'update.name': { type: String, optional: true },
+  }).validator(),
+  run({ _id, update }) {
+    Products.update(_id, { $set: update })
+  },
+})
+
+export const updateProductPrice = new ValidatedMethod({
+  name: 'products.price.update',
+  validate: new SimpleSchema({
+    _id: { type: String },
+    'update.price': { type: Number, optional: true },
+  }).validator(),
+  run({ _id, update }) {
+    Products.update(_id, { $set: update })
+  },
+})
+
+export const updateProductDescription = new ValidatedMethod({
+  name: 'products.description.update',
+  validate: new SimpleSchema({
+    _id: { type: String },
+    'update.description': { type: String, optional: true },
   }).validator(),
   run({ _id, update }) {
     Products.update(_id, { $set: update })
@@ -37,7 +61,9 @@ export const removeProduct = new ValidatedMethod({
 rateLimit({
   methods: [
     insertProduct,
-    updateProduct,
+    updateProductName,
+    updateProductPrice,
+    updateProductDescription,
     removeProduct,
   ],
   limit: 5,
