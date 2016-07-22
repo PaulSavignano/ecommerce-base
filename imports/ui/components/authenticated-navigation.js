@@ -1,7 +1,7 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap'
-import { Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
+import { Nav, NavItem, NavDropdown, MenuItem, Glyphicon, Badge } from 'react-bootstrap'
 import { Meteor } from 'meteor/meteor'
 
 const handleLogout = () => Meteor.logout(() => browserHistory.push('/login'))
@@ -29,6 +29,12 @@ export const AuthenticatedNavigation = () => (
       <NavDropdown eventKey={ 4 } title={ userName() } id="basic-nav-dropdown">
         <MenuItem eventKey={ 4.1 } onClick={ handleLogout }>Logout</MenuItem>
       </NavDropdown>
+      <LinkContainer to="/cart">
+        <NavItem eventKey={ 5 } href="/cart">
+          <Glyphicon glyph="shopping-cart" />
+          <Badge>1</Badge>
+        </NavItem>
+      </LinkContainer>
     </Nav>
   </div>
 )
