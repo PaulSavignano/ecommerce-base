@@ -6,12 +6,13 @@ import { insertProduct } from '../../../api/products/methods.js'
 const handleInsertProduct = (event) => {
   const target = event.target
   const name = target.value.trim()
-  const price = 0
+  const price = 9.95
   const description = 'example description'
+  const image = 'https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150'
 
   if (name !== '' && event.keyCode === 13) {
     insertProduct.call({
-      name, price, description,
+      name, price, description, image,
     }, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger')
@@ -23,7 +24,7 @@ const handleInsertProduct = (event) => {
   }
 }
 
-export const AddProduct = () => (
+export const InsertProduct = () => (
   <FormGroup>
     <FormControl
       type="text"

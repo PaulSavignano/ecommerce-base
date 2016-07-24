@@ -13,7 +13,7 @@ export class AppNavigation extends React.Component {
     return <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
-          <Link to="/">React & Meteor Ecommerce</Link>
+          <Link to="/">Ecommerce</Link>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>

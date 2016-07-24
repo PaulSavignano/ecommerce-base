@@ -3,42 +3,45 @@ import { Mongo } from 'meteor/mongo'
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
 import { Factory } from 'meteor/dburles:factory'
 
-export const Products = new Mongo.Collection('Products')
+export const CartProducts = new Mongo.Collection('CartProducts')
 
-Products.allow({
+CartProducts.allow({
   insert: () => false,
   update: () => false,
   remove: () => false,
 })
 
-Products.deny({
+CartProducts.deny({
   insert: () => true,
   update: () => true,
   remove: () => true,
 })
 
-Products.schema = new SimpleSchema({
+CartProducts.schema = new SimpleSchema({
+  productId: {
+    type: String,
+    label: 'The id of the product.',
+  },
   name: {
     type: String,
     label: 'The name of the product.',
   },
   price: {
     type: Number,
-    decimal: true,
     label: 'The price of the product.',
   },
   description: {
     type: String,
     label: 'The description of the product.',
   },
-  image: {
-    type: String,
-    label: 'The image of the product.',
+  quantity: {
+    type: Number,
+    label: 'The quantity of the product.',
   },
 })
 
-Products.attachSchema(Products.schema)
+CartProducts.attachSchema(CartProducts.schema)
 
-Factory.define('product', Products, {
+Factory.define('CartProducts', CartProducts, {
   title: () => faker.hacker.phrase(),
 })

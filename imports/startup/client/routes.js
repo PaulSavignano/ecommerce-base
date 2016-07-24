@@ -5,6 +5,8 @@ import { Meteor } from 'meteor/meteor'
 import { App } from '../../ui/layouts/app'
 import { Documents } from '../../ui/pages/documents'
 import { Products } from '../../ui/pages/products'
+import { ProductsAdmin } from '../../ui/pages/products-admin'
+import { Cart } from '../../ui/pages/cart'
 import { Index } from '../../ui/pages/index'
 import { Login } from '../../ui/pages/login'
 import { NotFound } from '../../ui/pages/not-found'
@@ -28,6 +30,8 @@ Meteor.startup(() => {
         <IndexRoute name="index" component={ Index } onEnter={ requireAuth } />
         <Route name="documents" path="/documents" component={ Documents } onEnter={ requireAuth } />
         <Route name="products" path="/products" component={ Products } onEnter={ requireAuth } />
+        <Route name="products-admin" path="/admin/products" component={ ProductsAdmin } onEnter={ requireAuth } />
+        <Route name="cart" path="/cart" component={ Cart } onEnter={ requireAuth } />
         <Route name="login" path="/login" component={ Login } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />

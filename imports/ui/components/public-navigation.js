@@ -1,6 +1,6 @@
 import React from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Nav, NavItem } from 'react-bootstrap'
+import { Nav, NavItem, Glyphicon, Badge } from 'react-bootstrap'
 
 export const PublicNavigation = () => (
   <Nav pullRight>
@@ -9,6 +9,12 @@ export const PublicNavigation = () => (
     </LinkContainer>
     <LinkContainer to="login">
       <NavItem eventKey={ 2 } href="/login">Log In</NavItem>
+    </LinkContainer>
+    <LinkContainer to="/cart">
+      <NavItem eventKey={ 3 } href="/cart">
+        <Glyphicon glyph="shopping-cart" />
+        <Badge>1</Badge>
+      </NavItem>
     </LinkContainer>
   </Nav>
 )
