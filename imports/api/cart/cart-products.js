@@ -22,18 +22,6 @@ CartProducts.schema = new SimpleSchema({
     type: String,
     label: 'The id of the product.',
   },
-  name: {
-    type: String,
-    label: 'The name of the product.',
-  },
-  price: {
-    type: Number,
-    label: 'The price of the product.',
-  },
-  description: {
-    type: String,
-    label: 'The description of the product.',
-  },
   quantity: {
     type: Number,
     label: 'The quantity of the product.',

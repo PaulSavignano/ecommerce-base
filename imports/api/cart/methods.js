@@ -6,9 +6,7 @@ import { rateLimit } from '../../modules/rate-limit.js'
 export const insertCartProduct = new ValidatedMethod({
   name: 'cart.product.insert',
   validate: new SimpleSchema({
-    name: { type: String },
-    price: { type: Number },
-    description: { type: String },
+    productId: { type: String },
     quantity: { type: Number },
   }).validator(),
   run(cartProduct) {
