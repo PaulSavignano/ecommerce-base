@@ -4,6 +4,10 @@ dependencies:
   override:
     - meteor || curl https://install.meteor.com | /bin/sh
 
+test:
+  override:
+    - meteor npm test
+
 deployment:
   production:
     branch: "master"
