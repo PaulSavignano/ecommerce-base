@@ -7,7 +7,7 @@ dependencies:
 
 test:
   override:
-    - gagarin -v
+    - SERVER_TEST_REPORTER="dot" meteor test --once --full-app --headless --driver-package dispatch:mocha
 
 deployment:
   production:
