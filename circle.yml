@@ -1,28 +1,16 @@
-machine:
-  node:
-    version: 5.2.0
 dependencies:
   cache_directories:
-    - "~/.npm"
-    - "~/.meteor"
-    - "node_modules"
-    - "./.meteor/local/build"
-    - "./.meteor/local/bundler-cache"
-    - "./.meteor/local/isopacks"
-    - "./.meteor/local/plugin-cache"
-    - "/home/ubuntu/nvm/versions/node/v5.2.0/bin"
-    - "/home/ubuntu/nvm/versions/node/v5.2.0/lib/node_modules"
+    - ~/.meteor
   override:
     - meteor || curl https://install.meteor.com | /bin/sh
-    - ./.testing/cache_meteor.sh
-    - ./.testing/cache_npm_dependencies.sh
-    - ./.testing/cache_build_and_dependencies.sh
-    - chimp --path=features # Cache chimp deps by running it without any tests
-checkout:
-  post:
-    - git submodule update --init
+    - npm install -g gagarin
+
 test:
-  pre:
-    - mkdir -p $CIRCLE_TEST_REPORTS/cucumber
   override:
-    - ./tests/acceptance_run
+    - gagarin -v
+
+deployment:
+  production:
+    branch: "master"
+    commands:
+      - printf "<Meteor username>\n<Meteor password>\n" | meteor deploy circlecivelocity.meteor.com
